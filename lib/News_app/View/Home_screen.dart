@@ -26,6 +26,26 @@ class _Home_screenState extends State<Home_screen> {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           children: [
+            SizedBox(
+              height: 5.h,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        providerF!.chanCountry(index);
+                      },
+                      child: Text("${providerT!.countryList[index]}"),
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: Colors.red),
+                    ),
+                  );
+                },
+                itemCount: providerT!.countryList.length,
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -60,11 +80,37 @@ class _Home_screenState extends State<Home_screen> {
                     child: ListView.builder(
                       itemBuilder: (context, index) {
                         return Container(
-                          height: 30.h,
                           width: 100.w,
+                          margin: EdgeInsets.symmetric(vertical: 10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            de
+                          ),
+                          child: Column(
+                            children: [
+                              Stack(
+                                alignment: Alignment(1, 1),
+                                children: [
+                                  Image.network(
+                                      "${newsModel.articles![index].urlToImage}"),
+                                  ElevatedButton(
+                                    onPressed: () {},
+                                    child: Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Colors.black,
+                                    ),
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.red),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "${newsModel.articles![index].title}",
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500),
+                              ),
+                            ],
                           ),
                         );
                       },

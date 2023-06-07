@@ -7,8 +7,8 @@ class ApiData {
 
   static ApiData apiData=ApiData();
 
-  Future<NewsModel> getApiData() async {
-    String link = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=5144cf846a9042e19d8ab4a602d1bf10";
+  Future<NewsModel> getApiData(String country) async {
+    String link = "https://newsapi.org/v2/top-headlines?country=$country&category=business&apiKey=5144cf846a9042e19d8ab4a602d1bf10";
 
     var response = await http.get(Uri.parse(link));
 
